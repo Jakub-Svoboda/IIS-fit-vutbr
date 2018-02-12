@@ -1,0 +1,17 @@
+{block content}
+    {if $user->loggedIn}
+        <h1 n:block="nazev">Pacient: {$pacient->jmeno} {$pacient->prijmeni}</h1>
+        <div class="returnbutton"><a n:href="Pacienti:show">← zpět na výpis pacientů</a></div>
+        {if $user->identity->username==="doctor"}
+            <ul class="pacient">
+                <li>Jméno: {$pacient->jmeno}</li>
+                <li>Příjmení: {$pacient->prijmeni}</li>
+                <li>Rodné číslo: {$pacient->rodne_cislo}</li>
+                <li>Adresa: {$pacient->adresa}</li>
+                <li>Pohlaví: {$pacient->pohlavi}</li>
+                <li>ID pojišťovny: {$pacient->id_pojistovna}</li>
+            </ul>
+			{control pacientEditForm}
+        {/if}
+    {/if}
+{/block}

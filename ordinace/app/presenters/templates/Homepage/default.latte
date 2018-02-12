@@ -1,0 +1,15 @@
+{block content}
+{if $user->loggedIn}
+<h1 n:block="title">Ordinace</h1>
+{if $user->identity->role==="doctor" || $user->identity->role==="admin"}
+	{if $user->identity->role==="admin"}<div class="selectbutton"><a n:href="Sign:up">Správa uživatelů</a></div>{/if}
+	{if $user->identity->role==="doctor"}<div class="selectbutton"><a n:href="Pacienti:show">Pacienti</a></div>{/if}
+	<div class="selectbutton"><a n:href="Leky:show">Léky</a></div>
+{/if}
+<div class="selectbutton"><a n:href="Faktury:show">Faktury</a></div>
+<div class="selectbutton"><a n:href="Navstevy:show">Návštěvy</a></div>
+{else}
+<div class="selectbutton"><a n:href="Sign:in">Přihlásit se</a></div>
+{/if}
+{/block}
+

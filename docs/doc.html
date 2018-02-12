@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-2"/>
+    <title>Projekt IIS</title>
+    <style type="text/css">
+    	table { border-collapse: collapse; }
+    	td, th { border: 1px solid black; padding: 0.3em 0.5em; text-align: left; }
+    	dt { font-weight: bold; margin-top: 0.5em; }
+    </style>
+</head>
+<body>
+
+<!-- Zkontrolujte prosím nastavení kódování v hlavičce dokumentu 
+     podle použitého editoru -->
+
+<h1>Ordinace praktického lékaře</h1> <!-- Nahradte názvem svého zadání -->
+
+<dl>
+	<dt>Autoři</dt>
+	<dd>Michael Schmid
+	    <a href="mailto:xschmi08@stud.fit.vutbr.cz">xschmi08@stud.fit.vutbr.cz</a> -
+		uživatelské rozhraní, databázový subsystém, dokumentace
+	</dd>
+	<dd>Jakub Svoboda
+	    <a href="mailto:xsvobo0z@stud.fit.vutbr.cz">xsvobo0z@stud.fit.vutbr.cz</a> -
+		php implementace, databázový subsystém
+	</dd>
+	<dt>URL aplikace</dt>
+	<dd><a href="http://xsvobo0z.tk/IIS/ordinace/www/">http://xsvobo0z.tk/IIS/ordinace/www/</a></dd>
+</dl>
+
+<h2>Uživatelé systému pro testování</h2>
+<p>V systému jsou předpřipraveni tři uživatelé s odlišnými rolemi. Další uživale je možné přidat z administrátorského učtu. K některým funkcím systému má přístup pouze uživatel s příslušnou rolí (např. do karet pacientů má přístup pouze doktor).</p>
+<table>
+<tr><th>Login</th><th>Heslo</th><th>Role</th></tr>
+<tr><td>admin</td><td>admin</td><td>Administrátor</td></tr>
+<tr><td>doctor</td><td>doctor</td><td>Lékař</td></tr>
+<tr><td>sestra</td><td>sestra</td><td>Sestra</td></tr>
+</table>
+
+<h2>Implementace</h2>
+<p>Pro implementaci informačního systému byl využit framework Nette verze 2.4.
+	Samotný informační systém vychází ze schématu případů užití. Po příchodu pacienta si lékař vyhledá jeho kartu, na které
+	se mu zobrazí informace o pacientovi a o jeho vyšetřeních, předepsaných lécích a externích vyšetřeních.
+	<br><br>
+	PHP skripty pro jednotlivé presentery jsou pojmenovány podle případu užití, který implementují.
+	Například FakturyPresenter.php je skript implementující přidávání a vyhledávání faktur.
+	Při tisku faktur jsou navigační prvky systému zkryty. Oproti zadání z IUS není implementováno odesílání faktur pojišťovně, protože pro její
+	implementaci je nutnost již existujícího systému pojišťoven nebo předem dohodnutý způsob předávání dat.<br>
+	Vyhledávání a přidávání pacientů je implementováno skriptem PacientiPresenter.php. Odebrat pacienta ze systému
+	nebo upravit jeho kartu je možno přímo ze stránky pacienta a implementace těchto funkcionalit se nachází
+	ve skriptu PacientPresenter.php. <br>
+	Případy užití týkající se návštěv jsou řešeny ve skriptech
+	NavstevaPresenter.php a NavstevyPresenter,php. Evidování vyšetření a externích ošetření lze provést
+	ze stránky pacienta(PacientPresenter.php) a jejich mazání ze stránky samotného vyšetření/ošetření
+	(VysetreniPresenter.php/OsetreniPresenter.php)
+	<br><br>
+	Ve formlářích jsou povinná data označena hvězdičkou *. Při zadání dat v nesprávném tvaru je uživateli zobrazena zpráva a je vyzván k jejich úpravě.
+	U polí "datum" je požadován formát YYYY-MM-DD.
+	<br><br>
+	Přihlášení uživatelé jsou automaticky odhlášení po 20 minutách nečinnosti. Pokud při přihlašování zvolí možnost "Zůstat přihlášen", pak je tato doba prodloužena na 14 dnů.
+</p>
+
+<h2>Instalace</h2>
+<ul>
+<li>IS pro svůj běh vyžaduje běžící MySQL databázi. Pro
+	tento účel lze použít např. program XAMPP. Také je potřeba
+	spustit php server, což lze udělat příkazem:
+	"php -S localhost:8000 -t ordinace/www", kde ordinace/www je document
+	root adresář obsahující soubor index.php</li>
+<li>Framework Nette vyžaduje verzi PHP 5.6, projekt byl testován s PHP verze 7.0</li>
+<li>Inicializaci databáze lze provést pomocí přiloženého skriptu "doctor.sql".</li>
+<li>V souboru app/config/config.local.neon přepište název databáze a heslo na ty, které jste použili při tvorbě databáze.</li>
+</ul>
+
+<h2>Známé problémy</h2>
+<p>Nebyly vynechány žádné body zadání.</p>

@@ -1,0 +1,9 @@
+{block content}
+{if $user->loggedIn}
+    <h1 n:block="title">Faktury</h1>
+
+	<div class="selectbutton"><a n:href="Faktury:add">Přidat fakturu</a></div>
+	<div class="selectbutton"><a n:href="Faktury:search">Vyhledat fakturu</a></div>
+{/if}
+{/block}
+

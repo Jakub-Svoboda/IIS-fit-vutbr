@@ -1,0 +1,15 @@
+{block content}
+{if $user->identity->role==="admin"}
+<h1 n:block=title>Správa uživatelů</h1>
+{foreach $users as $u}
+	<br>
+	<div class="descriptioncontainer">
+	Uživatel: <div class="result"><a n:href="Sign:user $u->id">{$u->username}</a></div>
+	Role: {$u->role}</div>
+	<br>
+{/foreach}
+<br>
+{control signUpForm}
+<br>
+Položky označené * jsou povinné
+{/if}

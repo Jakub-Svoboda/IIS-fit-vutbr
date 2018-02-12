@@ -1,0 +1,15 @@
+{block content}
+{if $user->loggedIn}
+	<h1 n:block="nazev">{$lek->nazev}</h1>
+	<div class="returnbutton"><a n:href="Leky:show">← zpět na výpis leku</a></div>
+	{if $user->identity->role==="doctor" || $user->identity->role==="admin" }
+	<ul>
+		<li>Název: {$lek->nazev}</li>
+		<li>ID léku: {$lek->id_lek}</li>
+		<li>Je na předpis: {if $lek->id_lek==0}ne {else}ano{/if}</li>
+		<li>Popis: {$lek->popis}</li>
+		
+	</ul>
+	
+	{/if}
+{/if}

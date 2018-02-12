@@ -1,0 +1,11 @@
+{block content}
+{if $user->loggedIn}
+	
+    <h1 n:block="title">Přidat ošetření</h1>
+
+	<p><a n:href="Osetrenis:show">← zpět na stránku ošetření</a></p>
+	{control osetreniForm}
+	Položky označené * jsou povinné.
+{/if}	
+{/block}
+

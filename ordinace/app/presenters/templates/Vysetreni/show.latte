@@ -1,0 +1,12 @@
+{block content}
+{if $user->loggedIn}
+	<h1 n:block="nazev">Vyšetření: {$vysetreni->nazev}</h1>
+	{if $user->identity->role==="doctor"}
+	<ul>
+		<li>Název: {$vysetreni->nazev}</li>
+		<li>Pacient: {$pacient->jmeno} {$pacient->prijmeni}</li>
+		{control vysetreniDeleteForm}
+	</ul>
+	
+	{/if}
+{/if}

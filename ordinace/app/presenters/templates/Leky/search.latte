@@ -1,0 +1,14 @@
+{block content}
+{if $user->loggedIn}
+	
+    <h1 n:block="title">Vyhledat lék</h1>
+
+    {if $user->identity->role==="doctor" || $user->identity->role==="admin"}
+		<div class="returnbutton"><a n:href="Leky:show">← zpět na stránku léků</a></div>
+	<div class="form">{control lekySearchForm}
+		<p>Pokud nebude nic vyplněno, budou zobrazeny všechny léky.</p></div>
+	{/if}
+	
+{/if}	
+{/block}
+

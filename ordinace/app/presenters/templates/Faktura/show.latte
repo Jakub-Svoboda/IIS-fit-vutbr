@@ -1,0 +1,14 @@
+{block content}
+{if $user->loggedIn}
+	<h1 n:block="nazev">Faktura: {$faktura->id_faktura}</h1>
+	<div class="returnbutton"><a n:href="Faktury:show">← zpět na stranu faktur</a></div>
+	<ul>
+		<li>Číslo faktury: {$faktura->id_faktura}</li>
+		<li>Datum: {$faktura->datum}</li>
+		<li>Částka: {$faktura->castka}</li>
+		<li>Pojišťovna: {$nazev->jmeno}</li>
+		<li>Pacient: {$pacient->jmeno} {$pacient->prijmeni}</li>
+		{control fakturaDeleteForm}
+	</ul>
+
+{/if}

@@ -1,0 +1,15 @@
+{block content}
+{if $user->loggedIn}
+	<h1 n:block="nazev">Předpis č:{$lecba->id_lecba}</h1>
+	{if $user->identity->role==="doctor"}
+	<ul>
+		<li>ID: {$lecba->id_lecba}</li>
+		<li>Počet dní užívání: {$lecba->pocet_dni_uzivani}</li>
+		<li>Množství: {$lecba->mnozstvi}</li>
+		<li>Lék: {$lek->nazev}</li>
+		<li>Pacient: {$pacient->jmeno} {$pacient->prijmeni}</li>
+		{control lecbaDeleteForm}
+	</ul>
+	
+	{/if}
+{/if}

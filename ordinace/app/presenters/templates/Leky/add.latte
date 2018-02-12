@@ -1,0 +1,13 @@
+{block content}
+{if $user->loggedIn}
+	
+    <h1 n:block="title">Přidat lék</h1>
+
+	{if $user->identity->role==="doctor" || $user->identity->role==="admin"}
+		<div class="returnbutton"><a n:href="Leky:show">← zpět na stránku léků</a></div>
+	<div class="form">{control lekyForm}
+		Položky označené * jsou povinné.</div>
+	{/if}
+{/if}	
+{/block}
+

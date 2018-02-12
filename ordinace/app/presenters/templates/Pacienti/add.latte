@@ -1,0 +1,12 @@
+{block content}
+{if $user->loggedIn}
+    <h1 n:block="title">Přidat pacienta</h1>
+	{if $user->identity->role==="doctor"}
+		<div class="returnbutton"><a n:href="Pacienti:show">← zpět na stránku pacientů</a></div>
+		<div class="form">{control pacientForm}
+		<br>Položky označené * jsou povinné.<br><br>
+			Hint hint: rodné číslo např: 9407035517</div>
+	{/if}
+{/if}	
+{/block}
+

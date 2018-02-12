@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link href="{$basePath}/css/screen.css" rel="stylesheet" type="text/css"/>
+	<link href="{$basePath}/css/print.css" rel="stylesheet" type="text/css" media="print"/>
+    <title>{ifset title}{include title|stripHtml} | {/ifset}Nette Web</title>
+</head>
+
+
+<body>
+<div class="menu">
+    <ul class="menu">
+        {if $user->loggedIn}
+            <li n:class="$presenter->isLinkCurrent('Homepage:*') ? current:menu"><a class="menu" n:href="Homepage:default">Hlavní strana</a></li>
+            {if $user->identity->role==="admin"}
+                    <li n:class="$presenter->isLinkCurrent('Sign:*') ? current:menu"><a class="menu" n:href="Sign:up">Správa uživatelů</a></li>{/if}
+            {if $user->identity->role==="doctor" }
+                <li n:class="($presenter->isLinkCurrent('Pacienti:*') || $presenter->isLinkCurrent('Pacient:*')) ? current:menu"><a class="menu" n:href="Pacienti:show">Pacienti</a></li>
+            {/if}
+            {if $user->identity->role==="doctor" || $user->identity->role==="admin" }
+                <li n:class="($presenter->isLinkCurrent('Leky:*') || $presenter->isLinkCurrent('Lek:*')) ? current:menu"><a class="menu" n:href="Leky:show">Léky</a></li>
+            {/if}
+            <li n:class="($presenter->isLinkCurrent('Faktury:*') || $presenter->isLinkCurrent('Faktura:*')) ? current:menu"><a class="menu" n:href="Faktury:show">Faktury</a></li>
+            <li n:class="($presenter->isLinkCurrent('Navstevy:*') || $presenter->isLinkCurrent('Navsteva:*')) ? current:menu"><a class="menu" n:href="Navstevy:show">Návštěvy</a></li>
+        {/if}
+    </ul>
+    <div id="flash" n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+    <div class="container">
+        <ul class="navig">
+            {if $user->loggedIn}
+                <li class="info">Přihlášen jako: {$user->identity->username}</li>
+                <li class="signout"><a n:href="Sign:out">Odhlásit</a></li>
+            {else}
+                <li class="signout"><a n:href="Sign:in">Přihlásit</a></li>
+            {/if}
+
+        </ul>
+    </div>
+</div>
+
+
+<div class="content">
+    {include content}
+</div>
+{block scripts}
+    <script src="https://nette.github.io/resources/js/netteForms.min.js"></script>
+{/block}
+</body>
+</html>

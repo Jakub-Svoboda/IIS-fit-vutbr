@@ -1,0 +1,27 @@
+parameters:
+
+application:
+	catchExceptions: true
+	errorPresenter: Error
+	mapping:
+		*: App\*Module\Presenters\*Presenter
+
+
+session:
+	expiration: 14 days
+
+
+services:
+	- App\Model\UserManager
+	- App\Forms\FormFactory
+	- App\Forms\SignUpFormFactory
+	- App\Forms\SignInFormFactory
+	router: App\RouterFactory::createRouter
+
+database:
+	dsn: 'mysql:host=localhost;unix_socket=/var/run/mysql/mysql.sock;dbname=xschmi08'
+	user: xschmi08
+	password: ovunma3m
+	
+  	
+		

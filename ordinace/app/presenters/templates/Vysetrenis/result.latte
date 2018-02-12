@@ -1,0 +1,20 @@
+{block content}
+{if $user->loggedIn}
+	
+    <h1 n:block="title">Nalezená vyšetření:</h1>
+	
+	{if $user->identity->role==="doctor"}
+		<p><a n:href="Vysetrenis:show">← zpět na stránku vyšetření</a></p>	
+	
+	{/if}
+	
+	{foreach $vysetrenis as $vysetreni}
+		<div class="vysetrenis">
+			<h2><a n:href="Vysetreni:show $vysetreni->id_vysetreni">{$vysetreni->id_vysetreni} {$vysetreni->nazev}</a></h2>	
+		</div>
+    {/foreach}
+	
+</div>
+{/if}	
+{/block}
+

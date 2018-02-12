@@ -1,0 +1,13 @@
+{block content}
+{if $user->loggedIn}
+	
+    <h1 n:block="title">Přidat vyšetření</h1>
+
+	{if $user->identity->role==="doctor"}
+		<p><a n:href="Leky:show">← zpět na stránku vyšetření</a></p>	
+	{control vysetreniForm}
+	Položky označené * jsou povinné.
+	{/if}
+{/if}	
+{/block}
+

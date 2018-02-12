@@ -1,0 +1,71 @@
+{block content}
+    {if $user->loggedIn}
+        <h1 n:block="nazev">Pacient: {$pacient->jmeno} {$pacient->prijmeni}</h1>
+        <div class="returnbutton"><a n:href="Pacienti:show">← zpět na výpis pacientů</a></div>
+        {if $user->identity->username==="doctor"}
+		<div class="returnbutton"><a n:href="Pacient:edit $pacient->id_pacient">Upravit kartu pacienta</a></div>
+            <ul class="pacient">
+                <li>Jméno: {$pacient->jmeno}</li>
+                <li>Příjmení: {$pacient->prijmeni}</li>
+                <li>Rodné číslo: {$pacient->rodne_cislo}</li>
+                <li>Adresa: {$pacient->adresa}</li>
+                <li>Pohlaví: {$pacient->pohlavi}</li>
+                <li>Pojišťovna: {$pojistovna->jmeno}</li>
+            </ul>
+			
+                <div class="column-left">
+                        <h2>Předepsané léky: </h2>
+                        <div style="display:none">{$index=0}</div>
+                        {foreach $lecby as $lecba}
+                        <div class="result"><a n:href="Lecba:show $lecba->id_lecba">Předpis č: {$lecba->id_lecba}</a></div>
+                            <ul>
+                                <li>
+                                    <div>Název léku: {$leky[$index]->nazev}</div>
+                                </li>
+                                <li>
+                                    <div>Počet dní užívání: {$lecba->pocet_dni_uzivani} dnů</div>
+                                </li>
+                                <li>
+                                    <div>Dávkování: {$lecba->mnozstvi}x denně</div>
+                                </li>
+                            </ul>
+                            <div style="display: none">{$index++}</div>
+                        {/foreach}
+                    <h3>Předepsat lék: </h3>
+                    {control lecbaForm}
+                    Položky označené * jsou povinné.
+                </div>
+                <div class="column-center">
+                        <h2>Záznamy ošetření: </h2>
+                        {foreach $osetrenis as $osetreni}
+                            <div class="result"><a n:href="Osetreni:show $osetreni->id_osetreni">Ošetření č: {$osetreni->id_osetreni}</a></div>
+                            <ul>
+                                <li>Datum: {$osetreni->datum}</li>
+                                <li>Popis: {$osetreni->popis}</li>
+                            </ul>
+
+                        {/foreach}
+
+
+                    <h3>Přidat záznam o ošetření: </h3>
+                    {control osetreniForm}
+                    Položky označené * jsou povinné.
+                </div>
+                <div class="column-right">
+                    <div>
+                        <h2>Záznamy externích vyšetření: </h2>
+                        {foreach $vysetrenis as $vysetreni}
+                            <div class="result"><a n:href="Vysetreni:show $vysetreni->id_vysetreni">Vyšetření
+                                č: {$vysetreni->id_vysetreni}</a></div>
+                            <ul>
+                                <li>Název: {$vysetreni->nazev}</li>
+                            </ul>
+                        {/foreach}
+
+                    <h3>Přidat záznam o externím vyšetření: </h3>
+                    {control vysetreniForm}
+                    Položky označené * jsou povinné.
+                </div>
+        {/if}
+    {/if}
+{/block}

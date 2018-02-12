@@ -1,0 +1,18 @@
+{block content}
+{if $user->loggedIn}
+	
+    <h1 n:block="title">Nalezené faktury</h1>
+	<div class="returnbutton"><a n:href="Faktury:show">← zpět na stránku faktur</a></div>
+	
+	{foreach $faktury as $faktura}
+		<div class="search">
+			<div class="result"><a n:href="Faktura:show $faktura->id_faktura">Faktura č: {$faktura->id_faktura}</a></div>
+			<div class="descriptioncontainer">
+			<div class="description">{$faktura->datum}</div>
+				<div class="description">Částka: {$faktura->castka}</div></div>
+		</div>
+    {/foreach}
+	
+{/if}	
+{/block}
+

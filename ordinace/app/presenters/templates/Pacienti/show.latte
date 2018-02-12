@@ -1,0 +1,11 @@
+{block content}
+{if $user->loggedIn}
+    <h1 n:block="title">Pacienti</h1>
+	
+	{if $user->identity->role==="doctor"}
+		<div class="selectbutton"> <a n:href="Pacienti:add">Přidat pacienta</a></div>
+		<div class="selectbutton"><a n:href="Pacienti:search">Vyhledat pacienta</a></div>
+	{/if}	
+{/if}	
+{/block}
+

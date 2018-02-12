@@ -1,0 +1,13 @@
+{block content}
+{if $user->loggedIn}
+	
+    <h1 n:block="title">Vyhledat fakturu</h1>
+	
+	<div class="returnbutton"><a n:href="Faktury:show">← zpět na stránku faktur</a></div>
+	<div class="form">{control fakturaSearchForm}
+		<p>Pokud nebude žádné pole vyplněno, budou zobrazeny všechny faktury.</p></div>
+	
+
+{/if}	
+{/block}
+

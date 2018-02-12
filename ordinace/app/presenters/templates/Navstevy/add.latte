@@ -1,0 +1,9 @@
+{block content}
+{if $user->loggedIn}
+    <h1 n:block="title">Přidat návštěvu</h1>
+	<div class="returnbutton"><a n:href="Navstevy:show">← zpět na stránku návštěv</a></div>
+	<div class="form">{control navstevaForm}
+		Položky označené * jsou povinné.</div>
+{/if}	
+{/block}
+

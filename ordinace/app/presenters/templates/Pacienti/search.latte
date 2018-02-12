@@ -1,0 +1,11 @@
+{block content}
+{if $user->loggedIn}
+    <h1 n:block="title">Vyhledat pacienta</h1>
+	{if $user->identity->role==="doctor"}
+		<div class="returnbutton"><a n:href="Pacienti:show">← zpět na stránku pacientů</a></div>
+		<div class="form">{control pacientSearchForm}
+			<p>Pokud nebude žádné pole vyplněno, budou zobrazeni všichni pacienti.</p></div>
+	{/if}
+{/if}	
+{/block}
+

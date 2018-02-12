@@ -1,0 +1,9 @@
+{block content}
+{if $user->loggedIn}
+    <h1 n:block="title">Vyhledat návštěvu</h1>
+	<div class="returnbutton"><a n:href="Navstevy:show">← zpět na stránku návštěv</a></div>
+	<div class="form">{control navstevaSearchForm}
+		<p>Pokud nebude žádné pole vyplněno, budou zobrazeny všechny návštěvy.</p></div>
+{/if}	
+{/block}
+

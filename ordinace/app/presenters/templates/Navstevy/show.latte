@@ -1,0 +1,8 @@
+{block content}
+{if $user->loggedIn}
+    <h1 n:block="title">Návštěvy</h1>
+	<div class="selectbutton"><a n:href="Navstevy:add">Přidat návštěvu</a></div>
+	<div class="selectbutton"><a n:href="Navstevy:search">Vyhledat návštěvu</a></div>
+{/if}	
+{/block}
+

@@ -1,0 +1,20 @@
+{block content}
+{if $user->loggedIn}
+	
+    <h1 n:block="title">Nalezené léky</h1>
+
+    {if $user->identity->role==="doctor" || $user->identity->role==="admin"}
+		<div class="returnbutton"><a n:href="Leky:show">← zpět na stránku léků</a></div>
+	
+	{/if}
+	
+	{foreach $leky as $lek}
+		<div class="search">
+			<div class="result"><a n:href="Lek:show $lek->id_lek">{$lek->nazev}</a></div>
+		</div>
+    {/foreach}
+	
+</div>
+{/if}	
+{/block}
+

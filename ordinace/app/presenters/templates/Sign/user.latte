@@ -1,0 +1,11 @@
+{block content}
+{if $user->identity->role==="admin"}
+	<h1 n:block="nazev">Uživatel</h1>
+	<div class="returnbutton"><a n:href="Sign:up">← zpět na správu uživatelů</a></div>
+	<ul>
+		<li>Uživatelské jméno: {$u->username}</li>
+		<li>Role: {$u->role}</li>
+		{control userDeleteForm}
+	</ul>
+<br>
+{/if}
